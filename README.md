@@ -44,15 +44,23 @@ $$
 #include <locale.h>
 int main() {
     setlocale(LC_CTYPE, "RUS");
-    double x, y;
-    printf("Введите координаты точки x и y через пробел: ");
-    scanf("%lf %lf", &x, &y);
-    if (y >= 0 && (x * x + y * y <= 36.0) && !(x >= 0 && (x * x + y * y <= 9.0))) {
-        printf("Точка (%.2f, %.2f) ПРИНАДЛЕЖИТ заштрихованной области.\n", x, y);
+    double a;
+    int n;
+    printf("Введите значение a: ");
+    scanf("%lf", &a);
+    printf("Введите целое значение n: ");
+    scanf("%d", &n);
+    if (a == 0) {
+        printf("Ошибка: параметр 'a' не может быть равен 0.\n");
+        return 1;
     }
-    else {
-        printf("Точка (%.2f, %.2f) НЕ ПРИНАДЛЕЖИТ заштрихованной области.\n", x, y);
+    double sum = 0.0;
+    double term = 1.0; 
+    for (int i = 0; i <= n; i++) {
+        term = term / (a + i); 
+        sum = sum + term;     
     }
+    printf("Значение ряда: %.6lf\n", sum);
     return 0;
 }
 ```
